@@ -35,7 +35,7 @@ public class TreeEditDistance {
 							Integer[] li,	Integer[] lj,
 							Node[] nodes1,Node[] nodes2,
 							int[][] td,int[][] fd) {
-		fd[li[i]][lj[j]] = 0;
+		fd[li[i]-1][lj[j]-1] = 0;
 		for(int di=li[i];di<=i;di++) fd[di][lj[j]-1] = fd[di-1][lj[j]-1]+nd.delete(nodes1[di], nodes2[lj[j]-1]);
 		for(int dj=lj[j];dj<=j;dj++) 
 			fd[li[i]-1][dj] = 

@@ -14,10 +14,10 @@ public class Tester {
 		client.setJavaScriptEnabled(false);
 		try {
 			HtmlPage p1 = client.getPage(
-					"http://slashdot.org/"
+					"http://www.novelr.com/"
 			);
 			HtmlPage p2 = client.getPage(
-					"http://books.slashdot.org/"
+					"http://www.wtf.sg"
 			);
 			TreeEditDistance ted = new TreeEditDistance(new NodeDistance() {
 				public int rename(Node n1, Node n2) {
