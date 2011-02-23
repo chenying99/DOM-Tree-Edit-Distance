@@ -45,12 +45,14 @@ public class Tester {
 				if(page!= null){
 					if(prevBody != null){
 						if(page.getBody()== prevBody) continue;
-						writer.print(input);
-						writer.print("\t");
-						writer.print(ted.calculate(prevBody, page.getBody()));
+						else {
+							writer.print(input);
+							writer.print("\t");
+							writer.print(ted.calculate(prevBody, page.getBody()));
+							prevBody = page.getBody();
+						}
 					}
 				}
-				prevBody = page.getBody();
 				writer.println();
 				writer.flush();
 			}
