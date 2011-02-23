@@ -44,16 +44,16 @@ public class Tester {
 				}
 				if(page!= null){
 					if(prevBody != null){
-						if(page.getBody()== prevBody) continue;
-						else {
+						if(page.getBody()!= prevBody) {
+							System.out.println();
 							writer.print(input);
 							writer.print("\t");
 							writer.print(ted.calculate(prevBody, page.getBody()));
-							prevBody = page.getBody();
+							writer.println();
 						}
 					}
+					prevBody = page.getBody();
 				}
-				writer.println();
 				writer.flush();
 			}
 		} catch (FailingHttpStatusCodeException e) {
