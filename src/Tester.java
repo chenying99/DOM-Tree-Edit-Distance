@@ -1,12 +1,9 @@
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-
-import javax.imageio.stream.FileImageInputStream;
 
 import org.w3c.dom.Node;
 
@@ -15,7 +12,6 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomNode;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
-import domted.DOMPostOrder;
 import domted.NodeDistance;
 import domted.TreeEditDistance;
 
@@ -26,7 +22,7 @@ public class Tester {
 
 	public static void main(String[] args) {
 		if(args.length == 1) openFile(args[0]);
-		else System.out.println("NOOOO");
+		else System.out.println("Please enter file with URLs.");
 		WebClient client = createClient();
 		TreeEditDistance ted = createTED();
 		String input;

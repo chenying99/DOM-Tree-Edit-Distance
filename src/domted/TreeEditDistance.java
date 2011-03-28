@@ -4,12 +4,24 @@ import org.w3c.dom.Node;
 
 public class TreeEditDistance {
 	NodeDistance nd;
+	private DOMPostOrder t1;
+	private DOMPostOrder t2;
 	public TreeEditDistance(NodeDistance nd) {
 		this.nd = nd;
 	}
+	public void setNode2(Node n2) {
+		t2 = new DOMPostOrder(n2);
+	}
 	public int calculate(Node n1,Node n2) {
-		DOMPostOrder t1 = new DOMPostOrder(n1);
-		DOMPostOrder t2 = new DOMPostOrder(n2);
+		t1 = new DOMPostOrder(n1);
+		t2 = new DOMPostOrder(n2);
+		return calculate();
+	}
+	public int calculate(Node n1) {
+		t1 = new DOMPostOrder(n1);
+		return calculate();
+	}
+	public int calculate() {
 		int[][] td = new int[t1.N.length][t2.N.length];
 		int[][] fd = new int[t1.N.length][t2.N.length];
 		for(int s=0;s<t1.kr.length;s++) {
@@ -45,14 +57,14 @@ public class TreeEditDistance {
 					fd[di][dj] =
 						Math.min(			fd[di-1][dj] + nd.delete(nodes1[di], nodes2[dj]),
 								Math.min(	fd[di][dj-1] + nd.insert(nodes1[di], nodes2[dj]),
-											fd[di-1][dj-1] + nd.rename(nodes1[di], nodes2[dj])
+										fd[di-1][dj-1] + nd.rename(nodes1[di], nodes2[dj])
 								)
 						);
 					td[di][dj]=fd[di][dj];
 				} else 	fd[di][dj] =
 					Math.min(			fd[di-1][dj] + nd.delete(nodes1[di], nodes2[dj]),
 							Math.min(	fd[di][dj-1] + nd.insert(nodes1[di], nodes2[dj]),
-										fd[li[di]-1][lj[dj]-1] + td[di][dj]
+									fd[li[di]-1][lj[dj]-1] + td[di][dj]
 							)
 					);
 			}
